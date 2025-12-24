@@ -1,0 +1,5 @@
+{
+  "name": "GitMaster Academy",
+  "description": "An interactive Git learning platform with a real-time SourceTree-style visualization, AI-powered challenges, and a built-in Git simulator.",
+  "requestFramePermissions": []
+}
