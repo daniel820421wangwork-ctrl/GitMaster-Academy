@@ -64,8 +64,10 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (isResizingLeft.current) setLeftWidth(Math.max(280, Math.min(e.clientX, 500)));
-      if (isResizingRight.current) setRightWidth(Math.max(320, Math.min(window.innerWidth - e.clientX, 700)));
+      // 將最小寬度從 280px 調降至 120px
+      if (isResizingLeft.current) setLeftWidth(Math.max(120, Math.min(e.clientX, 500)));
+      // 將最小寬度從 320px 調降至 120px
+      if (isResizingRight.current) setRightWidth(Math.max(120, Math.min(window.innerWidth - e.clientX, 700)));
     };
     const handleMouseUp = () => {
       isResizingLeft.current = false;
