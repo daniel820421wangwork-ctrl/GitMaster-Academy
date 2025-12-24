@@ -24,7 +24,8 @@ const GitGraph: React.FC<GitGraphProps> = ({ state }) => {
     if (commits.length === 0) return { nodes: [], paths: [] };
 
     const branchLanes: Record<string, number> = {};
-    const uniqueBranches = Array.from(new Set(commits.map(c => c.branch)));
+    // Fix: Explicitly cast to string[] to avoid 'unknown' index type error on subsequent forEach
+    const uniqueBranches = Array.from(new Set(commits.map(c => c.branch))) as string[];
     uniqueBranches.forEach((b, i) => {
       branchLanes[b] = i;
     });

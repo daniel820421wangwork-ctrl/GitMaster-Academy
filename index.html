@@ -3,7 +3,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>GitMaster Academy - 互動式 Git 學習平台</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2563eb">
@@ -38,6 +38,10 @@
       }
       body {
         margin: 0;
+        /* 確保手機版不會因為 body 捲動而影響內部 layout */
+        position: fixed;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
       }
       html { background-color: #f8fafc; }

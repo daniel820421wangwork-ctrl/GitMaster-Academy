@@ -185,8 +185,8 @@ const App: React.FC = () => {
 
   if (currentStep === 'select_difficulty') {
     return (
-      <div className="min-h-screen w-full bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center py-10 px-6 overflow-y-auto">
-        <div className="max-w-4xl w-full text-center space-y-10">
+      <div className="h-[100dvh] w-full bg-slate-50 dark:bg-slate-950 flex flex-col overflow-y-auto">
+        <div className="flex-1 max-w-4xl w-full mx-auto text-center space-y-10 py-12 px-6">
           <div className="space-y-4">
             <div className="inline-block p-5 bg-blue-600 rounded-[2rem] shadow-2xl mb-2">
               <i className="fa-brands fa-git-alt text-6xl text-white"></i>
@@ -204,7 +204,7 @@ const App: React.FC = () => {
                 className="w-full h-32 p-6 rounded-[2rem] bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 focus:border-blue-500 outline-none transition-all shadow-inner text-base font-bold"
               />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-10">
               {(['Beginner', 'Intermediate', 'Advanced'] as Difficulty[]).map((d) => (
                 <button
                   key={d}
@@ -235,11 +235,11 @@ const App: React.FC = () => {
 
   if (currentStep === 'task_briefing' && currentTask) {
     return (
-      <div className="min-h-screen w-full bg-slate-100 dark:bg-slate-950 flex flex-col items-center justify-center p-6 overflow-y-auto">
-        <div className="max-w-3xl w-full bg-white dark:bg-slate-900 rounded-[3rem] shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+      <div className="h-[100dvh] w-full bg-slate-100 dark:bg-slate-950 flex flex-col overflow-y-auto p-6">
+        <div className="max-w-3xl w-full mx-auto bg-white dark:bg-slate-900 rounded-[3rem] shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden my-auto">
           <div className="p-8 md:p-14 flex flex-col gap-6 text-left">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight uppercase italic underline decoration-blue-500 decoration-4 underline-offset-8">{currentTask.title}</h2>
-            <div className="bg-slate-50 dark:bg-slate-800/40 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 max-h-[30vh] overflow-y-auto">
+            <div className="bg-slate-50 dark:bg-slate-800/40 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 max-h-[40vh] overflow-y-auto">
               <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-bold">{currentTask.description}</p>
             </div>
             <div className="bg-indigo-50 dark:bg-indigo-900/10 p-6 md:p-8 rounded-[2rem] border-2 border-dashed border-indigo-200 dark:border-indigo-800/50">
@@ -256,7 +256,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} h-screen w-full bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 overflow-hidden font-sans relative`}>
+    <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} h-[100dvh] w-full bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 overflow-hidden font-sans relative`}>
       {/* 左側任務欄 */}
       <aside 
         style={{ width: isMobile ? '100%' : `${leftWidth}px` }}

@@ -81,22 +81,25 @@ export async function validateTask(task: GitTask, currentState: GitState): Promi
 }
 
 export async function askAssistant(task: GitTask, state: GitState, history: ChatMessage[], question: string): Promise<string> {
+  // Fix: The contents parameter should be a Content object with a parts array for multi-part requests.
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
-    contents: [
-      {
-        text: `你是一位 Git 專家教學助手。
-        當前任務：${task.title} - ${task.description}
-        目標：${task.goalDescription}
-        當前 Git 狀態：${JSON.stringify(state)}
-        
-        請根據使用者的問題提供具體的建議與指導。
-        語氣要親切且具備啟發性，不要直接給出完整答案，而是引導使用者思考下一步該做什麼。
-        請務必使用「繁體中文」回答。`
-      },
-      ...history.map(m => ({ text: `${m.role === 'user' ? '使用者' : '助理'}: ${m.text}` })),
-      { text: `使用者：${question}` }
-    ]
+    contents: {
+      parts: [
+        {
+          text: `你是一位 Git 專家教學助手。
+          當前任務：${task.title} - ${task.description}
+          目標：${task.goalDescription}
+          當前 Git 狀態：${JSON.stringify(state)}
+          
+          請根據使用者的問題提供具體的建議與指導。
+          語氣要親切且具備啟發性，不要直接給出完整答案，而是引導使用者思考下一步該做什麼。
+          請務必使用「繁體中文」回答。`
+        },
+        ...history.map(m => ({ text: `${m.role === 'user' ? '使用者' : '助理'}: ${m.text}` })),
+        { text: `使用者：${question}` }
+      ]
+    }
   });
 
   return response.text || "抱歉，我現在無法回答這個問題。";
