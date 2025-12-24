@@ -313,12 +313,12 @@ const App: React.FC = () => {
       )}
 
       {/* 中間圖譜欄 */}
-      <main className={`${isMobile && activeTab !== 'graph' ? 'hidden' : 'flex'} flex-1 min-w-0 bg-white dark:bg-[#0f1113] flex flex-col relative`}>
+      <main className={`${isMobile && activeTab !== 'graph' ? 'hidden' : 'flex'} flex-1 min-w-0 bg-white dark:bg-[#0f1113] flex flex-col relative overflow-hidden`}>
         <div className="p-4 border-b border-slate-100 dark:border-slate-800/50 flex justify-between">
            <span className="text-xs font-black uppercase tracking-widest text-slate-400">歷史圖譜</span>
            <span className="text-xs font-black px-3 py-1 bg-blue-600 text-white rounded-full">{gitState.currentBranch}</span>
         </div>
-        <div className="flex-1 min-h-0"><GitGraph state={gitState} /></div>
+        <div className="flex-1 min-h-0 overflow-auto"><GitGraph state={gitState} /></div>
       </main>
 
       {!isMobile && (
@@ -326,10 +326,10 @@ const App: React.FC = () => {
       )}
 
       {/* 右側控制台欄 */}
-      <section style={{ width: isMobile ? '100%' : `${rightWidth}px` }} className={`${isMobile && activeTab !== 'terminal' ? 'hidden' : 'flex'} flex-shrink-0 border-l border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-[#0a0c0e] flex flex-col shadow-xl`}>
+      <section style={{ width: isMobile ? '100%' : `${rightWidth}px` }} className={`${isMobile && activeTab !== 'terminal' ? 'hidden' : 'flex'} flex-shrink-0 border-l border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-[#0a0c0e] flex flex-col shadow-xl overflow-hidden`}>
         <div className="p-4 border-b border-slate-200 dark:border-slate-800 text-xs font-black uppercase text-slate-400 tracking-widest">實驗控制台</div>
         <div className="flex-1 flex flex-col p-4 gap-4 overflow-hidden">
-          <div className="h-1/2 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 overflow-y-auto">
+          <div className="h-1/2 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 overflow-y-auto scrollbar-hide">
             <GUIControls state={gitState} onExecute={handleGuiCommand} />
           </div>
           <div className="flex-1 min-h-0">

@@ -2,6 +2,12 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Difficulty, GitTask, GitState, ChatMessage } from "../types";
 
+/**
+ * 根據規範：
+ * 1. 必須使用 process.env.API_KEY。
+ * 2. 必須使用 new GoogleGenAI({ apiKey: ... })。
+ * 3. 不可使用 GoogleGenerativeAI。
+ */
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export async function generateGitTask(difficulty: Difficulty, scenario?: string, signal?: AbortSignal): Promise<GitTask> {
@@ -81,7 +87,6 @@ export async function validateTask(task: GitTask, currentState: GitState): Promi
 }
 
 export async function askAssistant(task: GitTask, state: GitState, history: ChatMessage[], question: string): Promise<string> {
-  // Fix: The contents parameter should be a Content object with a parts array for multi-part requests.
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: {
